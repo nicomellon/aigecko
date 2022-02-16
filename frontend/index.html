@@ -5,19 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AIGecko Task</title>
+    <script defer src="script.js"></script>
   </head>
   <body>
     <h2>Upload a new file</h2>
-    <form action="http://localhost:5000/upload_image" method=post enctype=multipart/form-data>
+    <form class="uploadImageForm" action="http://localhost:5000/upload_image" method=post enctype=multipart/form-data>
       <input type=file name=file>
       <input type=submit value=Upload>
     </form>
 
     <h2>Uploads</h2>
-    <ul>
-      <li>1</li>
-      <li>2</li>
-      <li>3</li>
+    <ul class="uploadsList" >
     </ul>
   </body>
 </html>
