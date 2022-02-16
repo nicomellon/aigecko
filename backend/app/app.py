@@ -17,7 +17,8 @@ def allowed_file(filename):
 # app homepage
 @app.route("/")
 def index():
-    return render_template("index.html")
+    images = os.listdir('./uploads')
+    return render_template("index.html", images=images)
 
 
 # get the image provided by the user and store it
