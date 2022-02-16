@@ -35,13 +35,12 @@ def upload_image():
     # empty file without a filename.
     if file.filename == '':
         # flash('No selected file')
-        return redirect("/")
+        return 'no selected file'
     
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return f'valid file going to {UPLOAD_FOLDER}'
-        # return redirect("/")
+        return redirect("/")
 
     return 'invalid file'
 

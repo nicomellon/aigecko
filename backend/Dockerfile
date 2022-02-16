@@ -1,10 +1,13 @@
 FROM python:3.10-alpine
 
-COPY app /app
+RUN mkdir -p /usr/src/app
+RUN mkdir -p /usr/src/app/backend
 
-WORKDIR /app
+COPY app /usr/src/app/backend/app
+
+WORKDIR /usr/src/app/backend/app
 
 RUN pip install -r requirements.txt
 
-EXPOSE 5000
+EXPOSE 80
 CMD ["python", "app.py"]
