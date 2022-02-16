@@ -1,8 +1,8 @@
 version: '3'
 services:
-  backend:
-    build: ./backend
+  app:
+    build:
+      context: .
     ports:
-      - '5000:5000'
-    container_name: backend-docker
+      - '80:5000'
     restart: always
