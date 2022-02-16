@@ -12,24 +12,22 @@ function FileUpload() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(selectedFile);
     axios
       .post('http://localhost:5000/upload_image', selectedFile)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="file" name="file" onChange={handleChange} />
-      <button type="submit" value="Upload">
-        Upload
-      </button>
-    </form>
+    <>
+      <h2>Upload an Image</h2>
+      <form onSubmit={handleSubmit}>
+        <input type="file" name="file" onChange={handleChange} />
+        <button type="submit" value="Upload">
+          Upload
+        </button>
+      </form>
+    </>
   );
 }
 

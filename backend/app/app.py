@@ -1,12 +1,15 @@
 import os
-from flask import Flask, flash, render_template, request, redirect
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 from werkzeug.utils import secure_filename
 
 UPLOAD_FOLDER = os.getcwd() + "/uploads"
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+images = ["Image A", "Image B"]
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+CORS(app)
 
 
 def allowed_file(filename):
@@ -14,34 +17,30 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-# app homepage
-@app.route("/")
-def index():
-    images = os.listdir('./uploads')
-    return render_template("index.html", images=images)
-
-
 # get the image provided by the user and store it
 @app.route("/upload_image", methods=["POST"])
 def upload_image():
     # check if the post request has the file part
     if "file" not in request.files:
-        # flash("No file part")
         return 'invalid file'
-        # return redirect("/")
 
     file = request.files['file']
     
     # If the user does not select a file, the browser submits an
     # empty file without a filename.
     if file.filename == '':
-        # flash('No selected file')
         return 'no selected file'
     
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
+
+        # save file to uploads directory
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return redirect("/")
+
+        # add to images dictionary
+        images[0] = filename
+
+        return jsonify(uid=0)
 
     return 'invalid file'
 
@@ -54,8 +53,8 @@ def analyse_image():
 
 # list all the images uploaded so far as well as their image ids
 @app.route("/list_images")
-def list_images():
-    return '<h1>list images</h1>'
+def list_images():        
+    return jsonify(images)
 
 
 if __name__ == "__main__":
