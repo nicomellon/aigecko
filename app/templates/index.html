@@ -1,7 +1,10 @@
 {% extends "layout.html" %} {% block body %}
 
 <form action="/upload_image" method="post">
-  <input type="file" name="" id="" />
+  <input type="text" name="name" id="" />
+  <button type="submit">Submit</button>
 </form>
 
-{% endblock %}
+{% for image in images %}
+<p>{{ image }}</p>
+{% endfor %} {% endblock %}
