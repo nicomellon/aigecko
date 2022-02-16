@@ -3,7 +3,7 @@
 The task consists in building a very basic RESTful API that enables a set of functionalities to the client/user. We will describe the list of functionalities that it must provide; the requirements and specifications that it must follow; as well as the technologies that must be used in order to solve the problem.
 The task at hand must be solved in a maximum of 48h from the moment it was received in your inbox. Using extra time will be valued negatively. The resulting complete code must be delivered by sharing the link to a git repository.
 
-## Technology stack required
+## Technology stack required
 
 - Python (any version of python is acceptable).
 - Flask (python library).
@@ -12,9 +12,7 @@ The task at hand must be solved in a maximum of 48h from the moment it was recei
 - CSS.
 - Git.
 
-## Optional (will be valued positively if used)
-
-- Docker (preferably docker-compose).
+- OPTIONAL: Docker (preferably docker-compose).
 
 ## Task description
 
@@ -32,7 +30,7 @@ On the front-end side the user will be able to upload new images, list the image
 
 Note that all the developed code should be run locally on a single machine, there is no need for it to be served on a remote server. Furthermore, there is no need to include a DB for handling the stored images so far, although you are free to use a DB if you prefer.
 
-## Requirements and specifications
+## Requirements and specifications
 
 - The code must be uploaded to Github or Gitlab and shared with us.
 - The code must be properly commented and documented to assure that other
