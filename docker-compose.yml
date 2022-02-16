@@ -1,10 +1,10 @@
 version: '3.10'
 
 services:
-  app:
-    build:
-      context: .
+  backend:
+    container_name: backend-container
+    build: ./backend
     ports:
-      - 80:5000
-    volumes:
-      - ./app:/app
+      - 5000:5000
+
+  # frontend:
