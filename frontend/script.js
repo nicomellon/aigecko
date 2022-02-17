@@ -40,8 +40,8 @@ async function getImages() {
     listLink.className = 'list-link';
     listLink.innerText = image;
     listLink.style.cursor = 'pointer';
-    listLink.onclick = () => {
-      analyseImage(image);
+    listLink.onclick = async () => {
+      await analyseImage(image);
     };
 
     listItem = document.createElement('li');
@@ -52,8 +52,13 @@ async function getImages() {
   });
 }
 
-function analyseImage(fileName) {
-  console.log(fileName);
+async function analyseImage(fileName) {
+  const response = await fetch(
+    `http://localhost:5000/analyse_image?image=${fileName}`
+  );
+  const data = await response.json();
+
+  console.log(data);
 }
 
 getImages();
