@@ -1,3 +1,4 @@
 flask==2.0.3
 flask_cors
 werkzeug
+Pillow==9.0.1

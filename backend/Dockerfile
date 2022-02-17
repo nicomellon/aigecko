@@ -4,7 +4,8 @@ COPY app /app
 
 WORKDIR /app
 
-RUN pip install -r requirements.txt
+RUN apk add zlib-dev jpeg-dev gcc musl-dev
+RUN pip3 install -r requirements.txt
 
 EXPOSE 80
-CMD ["python", "app.py"]
+CMD ["python3", "app.py"]

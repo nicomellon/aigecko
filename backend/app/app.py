@@ -2,6 +2,7 @@ import os
 from flask import Flask, request, jsonify, abort
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
+from PIL import Image
 
 UPLOAD_FOLDER = os.getcwd() + "/uploads"
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
@@ -41,7 +42,16 @@ def upload_image():
 # read a previously stored image and return its height and width
 @app.route("/analyse_image")
 def analyse_image():
-    return '<h1>analyse</h1>'
+    image = request.args.get("image")
+    images = os.listdir(UPLOAD_FOLDER)     
+
+    if image in images:
+        file = Image.open(f"{UPLOAD_FOLDER}/{image}")
+        width, height = file.size
+        return jsonify(width=width, height=height)
+    else:
+        return 'Image not found', 404
+
 
 
 # list all the images uploaded so far as well as their image ids
