@@ -1,7 +1,7 @@
 console.log('script loaded');
 
-const uploadImageForm = document.querySelector('.uploadImageForm');
-const uploadsList = document.querySelector('.uploadsList');
+const uploadImageForm = document.querySelector('.upload-form');
+const uploadsList = document.querySelector('.uploads-list');
 
 uploadImageForm.addEventListener('submit', async (e) => {
   e.preventDefault();

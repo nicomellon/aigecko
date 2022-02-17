@@ -1,0 +1,51 @@
+body {
+  margin: auto;
+  max-width: 90vw;
+}
+
+h1 {
+  text-align: center;
+}
+
+.main-container {
+  display: flex;
+}
+
+.list-div,
+.analyser-div {
+  flex: 1;
+  padding: 1em;
+}
+
+.list-div h2,
+.analyser-div h2 {
+  text-align: center;
+}
+
+.uploads-list {
+  margin: 0;
+  padding: 0;
+}
+
+.uploads-list li {
+  display: flex;
+  border-bottom: 0.5px solid gray;
+}
+
+.list-thumbnail {
+  width: 2rem;
+  padding: 1rem;
+}
+
+.list-link {
+  text-decoration: underline;
+  color: cornflowerblue;
+}
+
+.analyser-img {
+  width: 80%;
+}
+
+.analyser-info {
+  text-align: center;
+}
