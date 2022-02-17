@@ -2,6 +2,9 @@ console.log('script loaded');
 
 const uploadImageForm = document.querySelector('.upload-form');
 const uploadsList = document.querySelector('.uploads-list');
+const widthSpan = document.querySelector('.width');
+const heightSpan = document.querySelector('.height');
+const analyserImg = document.querySelector('.analyser-img');
 
 uploadImageForm.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -41,6 +44,7 @@ async function getImages() {
     listLink.innerText = image;
     listLink.style.cursor = 'pointer';
     listLink.onclick = async () => {
+      await getOneImage(image);
       await analyseImage(image);
     };
 
@@ -52,13 +56,20 @@ async function getImages() {
   });
 }
 
+async function getOneImage(fileName) {
+  const response = await fetch(`http://localhost:5000/images/${fileName}`);
+  // const data = await response.json();
+  console.log(response);
+  analyserImg.src = response.url;
+}
+
 async function analyseImage(fileName) {
   const response = await fetch(
     `http://localhost:5000/analyse_image?image=${fileName}`
   );
   const data = await response.json();
+  const { width, height } = data;
 
-  console.log(data);
+  widthSpan.innerText = `${width}px`;
+  heightSpan.innerText = `${height}px`;
 }
-
-getImages();
