@@ -32,10 +32,28 @@ async function getImages() {
 
   // loop over images and add list items for each image
   data.forEach((image) => {
-    imageLI = document.createElement('li');
-    imageLI.innerText = image;
-    uploadsList.appendChild(imageLI);
+    listImage = document.createElement('img');
+    listImage.className = 'list-thumbnail';
+    listImage.src = image;
+
+    listLink = document.createElement('p');
+    listLink.className = 'list-link';
+    listLink.innerText = image;
+    listLink.style.cursor = 'pointer';
+    listLink.onclick = () => {
+      analyseImage(image);
+    };
+
+    listItem = document.createElement('li');
+    listItem.appendChild(listImage);
+    listItem.appendChild(listLink);
+
+    uploadsList.appendChild(listItem);
   });
+}
+
+function analyseImage(fileName) {
+  console.log(fileName);
 }
 
 getImages();

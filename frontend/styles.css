@@ -38,6 +38,7 @@ h1 {
 }
 
 .list-link {
+  cursor: pointer;
   text-decoration: underline;
   color: cornflowerblue;
 }

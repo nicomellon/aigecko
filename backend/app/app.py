@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, jsonify, abort
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from PIL import Image
@@ -48,7 +48,7 @@ def analyse_image():
     if image in images:
         file = Image.open(f"{UPLOAD_FOLDER}/{image}")
         width, height = file.size
-        return jsonify(width=width, height=height)
+        return send_from_directory(app.config['UPLOAD_FOLDER'], image, width=width, height=height)
     else:
         return 'Image not found', 404
 
