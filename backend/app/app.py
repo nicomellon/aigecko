@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify, make_response, send_from_directory
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from PIL import Image
-# import urllib.request€
+# import urllib.request
 
 UPLOAD_FOLDER = os.getcwd() + "/uploads"
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
