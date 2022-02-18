@@ -40,7 +40,7 @@ def upload_image():
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
-        return make_response(jsonify(id=filename), 200)
+        return make_response(jsonify(unique_id=filename), 200)
     else:
         return make_response(jsonify(message="invalid file format"), 400)
 
