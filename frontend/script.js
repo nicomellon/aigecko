@@ -1,35 +1,53 @@
 console.log('script loaded');
 
+const API_URL = 'http://localhost:5000';
+
+// HTML elements
 const uploadImageForm = document.querySelector('.upload-form');
 const uploadsList = document.querySelector('.uploads-list');
 const widthSpan = document.querySelector('.width');
 const heightSpan = document.querySelector('.height');
 const analyserImg = document.querySelector('.analyser-img');
 
+// events listeners
 uploadImageForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const file = e.target.children[0].files[0];
-  await uploadImage('http://localhost:5000/upload_image', file);
-  getImages();
+  await uploadImage(file);
 });
 
-async function uploadImage(url, data) {
-  const formData = new FormData();
-  formData.append('file', data);
+async function uploadImage(file) {
+  try {
+    const formData = new FormData();
+    formData.append('file', file);
 
-  const response = await fetch(url, {
-    method: 'POST',
-    body: formData,
-  });
+    // post request to upload file to server
+    const response = await fetch(`${API_URL}/upload_image`, {
+      method: 'POST',
+      body: formData,
+    });
+    if (response.status === 200) {
+      await getOneImage(file.name); // display image in analyser
+      await analyseImage(file.name); // retrieve width and height
+      getUploads(); // populate uploads list
+    } else {
+      const data = await response.json();
+      alert(data.message);
+    }
+  } catch (err) {
+    alert(err.message);
+  } finally {
+    uploadImageForm.reset();
+  }
 }
 
-async function getImages() {
+async function getUploads() {
   // remove existing list items
   while (uploadsList.firstChild) {
     uploadsList.removeChild(uploadsList.firstChild);
   }
 
-  // get images from api
+  // get list of images from api
   const response = await fetch('http://localhost:5000/list_images');
   const data = await response.json();
 
@@ -43,6 +61,8 @@ async function getImages() {
     listLink.className = 'list-link';
     listLink.innerText = image;
     listLink.style.cursor = 'pointer';
+
+    // onclick listener
     listLink.onclick = async () => {
       await getOneImage(image);
       await analyseImage(image);
@@ -58,8 +78,6 @@ async function getImages() {
 
 async function getOneImage(fileName) {
   const response = await fetch(`http://localhost:5000/images/${fileName}`);
-  // const data = await response.json();
-  console.log(response);
   analyserImg.src = response.url;
 }
 

@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify, make_response, send_from_directory
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from PIL import Image
+# import urllib.request€
 
 UPLOAD_FOLDER = os.getcwd() + "/uploads"
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
@@ -20,21 +21,28 @@ def allowed_file(filename):
 # get the image provided by the user and store it
 @app.route("/upload_image", methods=["POST"])
 def upload_image():
-    # check if the post request has the file part
-    if "file" not in request.files:
-        return make_response("no file uploaded", 400) 
-
-    file = request.files["file"]  
+    # if the user provides a local file
+    if "file" in request.files:
+        file = request.files["file"]    
+    # if the user provided a URL
+    # elif "url" in request.json:
+    #     url = request.json.get("url")
+    #     name = request.json.get("name")
+    #     urllib.request.urlretrieve(url, name)
+    #     file = Image.open(name)
+    else:
+        return make_response(jsonify(message="no file uploaded"), 400) 
+    
     # If the user does not select a file
     if file.filename == "":
-        return make_response("no selected file", 400)
+        return make_response(jsonify(message="no selected file"), 400)
 
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
         return make_response(jsonify(id=filename), 200)
     else:
-        return make_response("invalid file name", 400)
+        return make_response(jsonify(message="invalid file format"), 400)
 
 
 # read a previously stored image and return its height and width
@@ -48,7 +56,7 @@ def analyse_image():
         width, height = file.size
         return make_response(jsonify(width=width, height=height))
     else:
-        return make_response("Image not found", 404)
+        return make_response(jsonify(message="Image not found"), 404)
 
 
 # serve images as files
@@ -58,7 +66,7 @@ def get_image(image):
     if image in images:
         return send_from_directory(app.config["UPLOAD_FOLDER"], image)
     else:
-        return make_response("Image not found", 404)
+        return make_response(jsonify(message="Image not found"), 404)
 
 
 

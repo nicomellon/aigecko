@@ -9,35 +9,38 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <section class="upload-section">
-      <h2>Upload a new file</h2>
-      <form class="upload-form">
-        <input type="file" name="file" />
-        <input type="submit" value="Upload" />
-      </form>
-    </section>
-    <hr />
-
-    <section class="main-container">
-      <div class="list-div">
-        <h2>Uploads</h2>
-        <hr />
-        <ul class="uploads-list"></ul>
-      </div>
+    <main class="app">
+      <section class="upload-section">
+        <form class="upload-form">
+          <input class="file-input" type="file" name="file" />
+          <input class="btn" type="submit" value="Analyse" />
+        </form>
+      </section>
       <hr />
-      <div class="analyser-div">
-        <h2>Analyser</h2>
+
+      <section class="main-container">
+        <div class="list-div">
+          <h2>Uploads</h2>
+          <hr />
+          <ul class="uploads-list"></ul>
+        </div>
         <hr />
-        <p class="analyser-info">
-          Width: <b class="width">...</b> Height: <b class="height">...</b>
-        </p>
-        <img
-          class="analyser-img"
-          src="LogMealLogo.jpeg"
-          alt="upload an image"
-        />
-      </div>
-    </section>
-    <hr />
+        <div class="analyser-div">
+          <h2>Analyser</h2>
+          <hr />
+          <p class="analyser-info">
+            Width: <b class="width">...</b> Height: <b class="height">...</b>
+          </p>
+          <div class="analyser-img-div">
+            <img
+              class="analyser-img"
+              src="LogMealLogo.jpeg"
+              alt="upload an image"
+            />
+          </div>
+        </div>
+      </section>
+      <hr />
+    </main>
   </body>
 </html>
