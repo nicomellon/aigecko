@@ -1,47 +1,57 @@
-# Programming Task AIGecko Job Position
+# AIGecko Task - Nico Mellon
 
-The task consists in building a very basic RESTful API that enables a set of functionalities to the client/user. We will describe the list of functionalities that it must provide; the requirements and specifications that it must follow; as well as the technologies that must be used in order to solve the problem.
-The task at hand must be solved in a maximum of 48h from the moment it was received in your inbox. Using extra time will be valued negatively. The resulting complete code must be delivered by sharing the link to a git repository.
+Thanks for considering my application, I'm looking forward to hearing back!
 
-## Technology stack required
+## The process
 
-- Python (any version of python is acceptable).
-- Flask (python library).
-- Javascript.
-- HTML.
-- CSS.
-- Git.
+1. First I learnt a little bit about docker-compose. It took me quite some time to figure out how to have two separate docker images for the frontend and backend and to get it working, and I lost some time here.
+2. Translate my knowledge of Express.js to flask. Being new to Python and flask, I learnt how to set up routing through the documentation and [this](https://www.youtube.com/watch?v=He8HMbhFOHg) video.
 
-- OPTIONAL: Docker (preferably docker-compose).
+3. Once the backend was built I tested it with curl and postman, then moved on to building a simple frontend in plain HTML, CSS & javascript
 
-## Task description
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-You are required to create a simple web page using HTML + CSS + Javascript as the front-end for the user interaction. The front-end must connect to the Flask + Python that will act as the backend of the solution.
+## Installation
 
-In order to easily deploy the application in any machine you are required to create docker images and/or docker-compose services that will install all the requirements and libraries and run each of the services of the application.
+1. Clone the repo
+   ```sh
+   git clone https://github.com/nicomellon/aigecko
+   ```
+2. Move into the project directory
+   ```sh
+   cd aigecko
+   ```
+3. Build with docker-compose
+   ```sh
+   docker-compose up -d
+   ```
+4. Open in a browser at [localhost](http://localhost)
 
-On the front-end side you will have to enable a way for the user to upload an image either from their computer or by providing a source url.
-The API will have to implement an endpoint named /upload_image that will get the image provided by the user and will store it on the server-side. This endpoint will have to return a unique image_id. If a wrong image file or wrong url is provided the API will have to return an error message following the HTTP conventions and the error will have to be communicated to the user on the front-end side.
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-Another endpoint will have to be created (named /analyse_image) that, given a unique image_id, will read a previously stored image and return its height and width. Similarly to the previous one, error handling is also required on this endpoint.
+<!-- USAGE EXAMPLES -->
 
-A third and last endpoint named /list_images will be needed in order to list all the images uploaded so far as well as their image ids.
-On the front-end side the user will be able to upload new images, list the images that have been uploaded so far as well as allow analyzing any of the images uploaded. It is important all these functionalities are presented in a tidy and nice-looking way for the user.
+## Usage
 
-Note that all the developed code should be run locally on a single machine, there is no need for it to be served on a remote server. Furthermore, there is no need to include a DB for handling the stored images so far, although you are free to use a DB if you prefer.
+Use the form at the top of the page to select an image from your computer, and click "Analyse". This will store the image on our server and return the analysed image's width & height.
 
-## Requirements and specifications
+You can upload multiple images and switch between them by clicking on the links in the uploads list.
 
-- The code must be uploaded to Github or Gitlab and shared with us.
-- The code must be properly commented and documented to assure that other
-  developers can understand it at any time.
-- You must provide a README file that clearly documents the functionalities
-  implemented; how to run the code and how the functionalities can be used. Any extra
-  documentation will be valued positively.
-- You must also document in general lines the list of steps you have followed in order
-  to design/plan the development of the task.
-- Extra technologies can be used if required. If any of the required/predefined
-  technologies are replaced by others in your solution a reasonable justification must
-  be provided.
-- The capabilities shown during the front-end design will be valued positively.
-  Note that all the requirements and technologies used in this task are important for the job application at AIGecko. The proper use of the technologies or your ease to learn about them will be valued positively.
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- ROADMAP -->
+
+## Backlog
+
+- Upload images from a URL
+
+  - to acheive this I found online that I could have used the "urllib.request" or "requests" library
+
+- Return a unique_id for each image uploaded
+
+  - For this one, if a database were involved I'd return the id of the stored image in the database. For simplicity I decided to return the filename.
+
+- Make a nicer UI
+  - I think I took the "simple web page using HTML + CSS + Javascript" too literally maybe 😂. I would have liked to make a nice frontend with React.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
